@@ -9,42 +9,31 @@
 package frc.robot.subsystems; 
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
-import com.ctre.phoenix6.*;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class DriveSubsystem extends SubsystemBase {
     /*create a new DriveSubsytem*/
 
     //construct new spark objects 
-    Spark s_leftFront = new Spark(Constants.pwmLeftFront);
-    Spark s_leftBack = new Spark(Constants.pwmLeftBack);
-    Spark s_rightFront = new Spark(Constants.pwmRightFront);
-    Spark s_rightBack = new Spark(Constants.pwmRightBack);
-    //Spark s_armBase = new Spark(Constants.);
- 
-
-    
-
-    //values of joystick inputs 
-    double leftJoy = 0;
-    double rightJoy = 0;
+    WPI_VictorSPX leftFront = new WPI_VictorSPX(Constants.CANLeftFront); //dummy
+    WPI_VictorSPX leftBack = new WPI_VictorSPX(Constants.CANLeftBack); //dumber
+    WPI_VictorSPX rightFront = new WPI_VictorSPX(Constants.CANRightFront); //dumbest
+    WPI_VictorSPX rightBack = new WPI_VictorSPX(Constants.CANRightBack); //dumbo
+    //Spark s_armBase = new Spark(Constants.)pwmRightFront;
 
     public DriveSubsystem() {
         //code here
-
+        
         //start diffDrive
     }
 
-    public void drive(double x, double y, double r) {
-        s_leftFront.set(MathUtil.clamp(-x + y + r,0,1));
-        s_rightFront.set(MathUtil.clamp(x - y + r,0,1));
-        s_leftBack.set(MathUtil.clamp(-x + y + r,0,1));
-        s_rightBack.set(MathUtil.clamp(x - y + r,0,1));
+    public void drive(double speedX, double speedY, double speedR) {
+        leftFront.set(MathUtil.clamp(-speedY - speedX - speedR, -1, 1));
+        rightFront.set(MathUtil.clamp(speedY - speedX - speedR, -1, 1));
+        leftBack.set(MathUtil.clamp(speedY + speedX - speedR, -1, 1));
+        rightBack.set(MathUtil.clamp(-speedY + speedX - speedR, -1, 1));
     }
 
     @Override

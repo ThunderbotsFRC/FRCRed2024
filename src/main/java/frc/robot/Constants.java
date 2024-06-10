@@ -22,12 +22,19 @@ public final class Constants {
     //PWM port locations 
 
     //Drivetrain controller pwm ports (on RoboRIO)
-    public final static int pwmLeftFront = 0;
-    public final static int pwmLeftBack = 1; 
-    public final static int pwmRightFront = 2; 
-    public final static int pwmRightBack = 3; 
+    public final static int CANLeftFront = 4;
+    public final static int CANLeftBack = 3; 
+    public final static int CANRightFront = 1; 
+    public final static int CANRightBack = 2; 
 
     //actuator ports
     public final static int pwmBottomLauncher = 4;
     public final static int pwmTopLauncher = 5;
+    public final static int pwmIntake = 6;
+
+    //Ultrasonic Ports
+    public final static int pwmXDistPing = 7;
+    public final static int pwmXDistEcho = 8;
+    public final static int pwmYDistPing = 9;
+    public final static int pwmYDistEcho = 10;
 }

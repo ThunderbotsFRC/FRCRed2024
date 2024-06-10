@@ -85,12 +85,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     double speedX = RobotContainer.controller.getRightX()*.9;
-    double speedY = RobotContainer.controller.getLeftY()*.9;
-    double speedR = RobotContainer.controller.getRightX()*.9;
-    RobotContainer.m_driveSubsystem.drive(speedX, speedY,speedR); 
-    if (RobotContainer.controller.getXButtonPressed()) RobotContainer.m_launcherSubsystem.Load();
-    if (RobotContainer.controller.getRightBumperPressed()) RobotContainer.m_launcherSubsystem.SpeakerLaunch();
-    if (RobotContainer.controller.getLeftBumperPressed()) RobotContainer.m_launcherSubsystem.AmpLaunch();
+    double speedY = -RobotContainer.controller.getLeftY()*.9;
+    double speedR = RobotContainer.controller.getLeftX()*.9;
+    RobotContainer.m_driveSubsystem.drive(speedX, speedY, speedR); 
   }
   /** This function is called once when the robot is disabled. */
   @Override
